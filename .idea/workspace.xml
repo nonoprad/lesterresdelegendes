@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3c83050c-aed3-4e6f-8ab1-b7caf40be4a0" name="Default" comment="" />
+    <list default="true" id="3c83050c-aed3-4e6f-8ab1-b7caf40be4a0" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+    </list>
     <ignored path="LesTerresDeLegendes.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -576,12 +578,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1473367867444</updated>
-      <workItem from="1473367871944" duration="103000" />
+      <workItem from="1473367871944" duration="245000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="103000" />
+    <option name="totallyTimeSpent" value="245000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="24" width="1922" height="1057" extended-state="6" />
