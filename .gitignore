@@ -1,2 +1,5 @@
-lesterresdelegendes.iml
+*.iml
 .idea/
+*/target
+**/*.iml
+**/target
