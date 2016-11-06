@@ -1,4 +1,4 @@
-package com.socgen.application.digital.modele;
+package fr.nonoprad.ltdl.modele;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
@@ -6,32 +6,35 @@ import lombok.*;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
-@Entity(name = "EntreeEnRelation")
+@Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name="ENTREE_EN_RELATION")
+@Table(name="PERSONNAGE")
 @NamedQueries({
-    @NamedQuery(name="findAll", query = "SELECT eer FROM EntreeEnRelation eer")
+    @NamedQuery(name="Personnage.findAll", query = "SELECT per FROM Personnage per")
 })
 @ToString
 @EqualsAndHashCode
-public class EntreeEnRelation implements Serializable {
+public class Personnage implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Getter @Setter
     private Long id;
     @Getter @Setter
-    private String raisonSociale;
-    @Getter @Setter
-    private String adresse;
+    @ManyToOne
+    private Race race;
+
     @Getter @Setter
     @JsonFormat(pattern = "dd/MM/yyyy")
     private Date dateCreate;
+
     @Getter @Setter
-    private String typeSociete;
+    @OneToMany(mappedBy = "competence_id")
+    private List<Competence> competences;
+
     @Version
-    @Column(columnDefinition = "int4 default '0'")
     private int version;
 }

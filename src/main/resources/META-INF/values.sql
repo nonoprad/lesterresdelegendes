@@ -1,0 +1,6 @@
+INSERT INTO Race(race_id, nom) VALUES (1, 'Nain')
+INSERT INTO Race(race_id, nom) VALUES (2, 'Troll')
+INSERT INTO Race(race_id, nom) VALUES (3, 'Goblin')
+INSERT INTO Race(race_id, nom) VALUES (4, 'Paladin')
+INSERT INTO Race(race_id, nom) VALUES (5, 'Sorcier')
+INSERT INTO Race(race_id, nom) VALUES (6, 'Shaman')

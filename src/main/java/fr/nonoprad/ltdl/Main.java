@@ -1,7 +1,10 @@
-package com.socgen.application.digital;
+package fr.nonoprad.ltdl;
 
-import com.socgen.application.digital.controller.EntreeEnRelationController;
-import com.socgen.application.digital.modele.EntreeEnRelation;
+import fr.nonoprad.ltdl.controller.PersonnageController;
+import fr.nonoprad.ltdl.controller.RaceController;
+import fr.nonoprad.ltdl.modele.Competence;
+import fr.nonoprad.ltdl.modele.Personnage;
+import fr.nonoprad.ltdl.modele.Race;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.ClassLoaderAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
@@ -44,10 +47,12 @@ public class Main {
 
         JAXRSArchive deployment = ShrinkWrap.create(JAXRSArchive.class);
         deployment.addAllDependencies(true);
-        deployment.addClasses(EntreeEnRelationController.class, EntreeEnRelation.class);
+        deployment.addClasses(PersonnageController.class, Race.class, Personnage.class, Competence.class, LtdlApplication.class);
         deployment.addAsWebInfResource(new ClassLoaderAsset("META-INF/persistence.xml", Main.class.getClassLoader()), "classes/META-INF/persistence.xml");
+        deployment.addAsWebInfResource(new ClassLoaderAsset("META-INF/values.sql", Main.class.getClassLoader()), "classes/META-INF/values.sql");
         deployment.addAsWebInfResource(new ClassLoaderAsset("log4j.xml", Main.class.getClassLoader()), "classes/log4j.xml");
-        deployment.addResource(EntreeEnRelationController.class);
+        deployment.addResource(PersonnageController.class);
+        deployment.addResource(RaceController.class);
 
         // Start the swarm and deploy the default war
         swarm.deploy(deployment);

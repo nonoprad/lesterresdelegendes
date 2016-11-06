@@ -41,7 +41,7 @@
         <artifactId>wildfly-swarm-plugin</artifactId>
         <version>${version.wildfly-swarm}</version>
             <configuration>
-                <mainClass>com.socgen.application.digital.Main</mainClass>
+                <mainClass>fr.nonoprad.ltdl.Main</mainClass>
             </configuration>
             <executions>
                 <execution>
