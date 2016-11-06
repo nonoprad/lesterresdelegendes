@@ -12,6 +12,7 @@ import org.wildfly.swarm.Swarm;
 import org.wildfly.swarm.datasources.DatasourcesFraction;
 import org.wildfly.swarm.jaxrs.JAXRSArchive;
 import org.wildfly.swarm.jpa.JPAFraction;
+import org.wildfly.swarm.undertow.WARArchive;
 
 public class Main {
 
@@ -54,8 +55,12 @@ public class Main {
         deployment.addResource(PersonnageController.class);
         deployment.addResource(RaceController.class);
 
+
+        deployment.staticContent("statics/");
+
         // Start the swarm and deploy the default war
         swarm.deploy(deployment);
+
     }
 
 
