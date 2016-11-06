@@ -22,7 +22,7 @@ public class Personnage implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Getter @Setter
-    private Long id;
+    private Long personnage_id;
     @Getter @Setter
     @ManyToOne
     private Race race;
@@ -32,8 +32,8 @@ public class Personnage implements Serializable {
     private Date dateCreate;
 
     @Getter @Setter
-    @OneToMany(mappedBy = "competence_id")
-    private List<Competence> competences;
+    @ManyToMany(mappedBy = "personnages",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Competence> competence;
 
     @Version
     private int version;
