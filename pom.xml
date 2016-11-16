@@ -69,7 +69,31 @@
             <target>1.8</target>
         </configuration>
     </plugin>
-</plugins>
+      <plugin>
+          <groupId>com.github.webdriverextensions</groupId>
+          <artifactId>webdriverextensions-maven-plugin</artifactId>
+          <version>1.0.1</version>
+          <executions>
+              <execution>
+                  <goals>
+                      <goal>install-drivers</goal>
+                  </goals>
+              </execution>
+          </executions>
+          <configuration>
+              <drivers>
+                  <driver>
+                      <name>internetexplorerdriver</name>
+                      <version>2.44</version>
+                  </driver>
+                  <driver>
+                      <name>chromedriver</name>
+                      <version>2.12</version>
+                  </driver>
+              </drivers>
+          </configuration>
+      </plugin>
+    </plugins>
   </build>
 
   <dependencies>
@@ -94,6 +118,12 @@
       <dependency>
           <groupId>org.wildfly.swarm</groupId>
           <artifactId>transactions</artifactId>
+          <version>${version.wildfly-swarm}</version>
+      </dependency>
+
+      <dependency>
+          <groupId>org.wildfly.swarm</groupId>
+          <artifactId>ejb</artifactId>
           <version>${version.wildfly-swarm}</version>
       </dependency>
 
@@ -131,7 +161,20 @@
         <artifactId>javaee-api</artifactId>
         <version>7.0</version>
         <scope>provided</scope>
-    </dependency>
+      </dependency>
+      <dependency>
+          <groupId>org.seleniumhq.selenium</groupId>
+          <artifactId>selenium-java</artifactId>
+          <version>3.0.1</version>
+          <scope>test</scope>
+      </dependency>
+
+      <dependency>
+          <groupId>com.github.webdriverextensions</groupId>
+          <artifactId>webdriverextensions</artifactId>
+          <version>1.2.1</version>
+          <scope>test</scope>
+      </dependency>
   </dependencies>
 
 </project>

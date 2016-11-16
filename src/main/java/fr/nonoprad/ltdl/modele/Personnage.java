@@ -13,7 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @Table(name="PERSONNAGE")
 @NamedQueries({
-    @NamedQuery(name="Personnage.findAll", query = "SELECT per FROM Personnage per")
+    @NamedQuery(name="Personnage.findAll", query = "SELECT per FROM Personnage per fetch all properties")
 })
 @ToString
 @EqualsAndHashCode
@@ -33,7 +33,7 @@ public class Personnage implements Serializable {
 
     @Getter @Setter
     @ManyToMany(mappedBy = "personnages",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Competence> competence;
+    private List<Competence> competences;
 
     @Version
     private int version;
