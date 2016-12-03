@@ -1,6 +1,7 @@
 package fr.nonoprad.ltdl.service;
 
 import fr.nonoprad.ltdl.modele.Personnage;
+import lombok.NoArgsConstructor;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -10,7 +11,9 @@ import java.util.List;
 @Stateless
 public class PersonnageService extends AbstractServices<Personnage, Long>{
 
-
+    public PersonnageService(){
+        super();
+    }
     public PersonnageService(EntityManager em) {
         super(em);
     }

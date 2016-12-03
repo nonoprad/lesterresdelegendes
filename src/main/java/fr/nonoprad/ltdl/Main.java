@@ -5,6 +5,10 @@ import fr.nonoprad.ltdl.controller.RaceController;
 import fr.nonoprad.ltdl.modele.Competence;
 import fr.nonoprad.ltdl.modele.Personnage;
 import fr.nonoprad.ltdl.modele.Race;
+import fr.nonoprad.ltdl.odt.CompetenceOdt;
+import fr.nonoprad.ltdl.odt.PersonnageOdt;
+import fr.nonoprad.ltdl.odt.RaceOdt;
+import fr.nonoprad.ltdl.service.AbstractServices;
 import fr.nonoprad.ltdl.service.PersonnageService;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.ClassLoaderAsset;
@@ -49,7 +53,13 @@ public class Main {
 
         JAXRSArchive deployment = ShrinkWrap.create(JAXRSArchive.class);
         deployment.addAllDependencies(true);
-        deployment.addClasses(PersonnageController.class, Race.class, Personnage.class, Competence.class, LtdlApplication.class, PersonnageService.class);
+        deployment.addClasses(
+                PersonnageController.class, RaceController.class,
+                RaceOdt.class, PersonnageOdt.class, CompetenceOdt.class,
+                Race.class, Personnage.class, Competence.class,
+                LtdlApplication.class,
+                PersonnageService.class, AbstractServices.class
+        );
         deployment.addAsWebInfResource(new ClassLoaderAsset("META-INF/persistence.xml", Main.class.getClassLoader()), "classes/META-INF/persistence.xml");
         deployment.addAsWebInfResource(new ClassLoaderAsset("META-INF/values.sql", Main.class.getClassLoader()), "classes/META-INF/values.sql");
         deployment.addAsWebInfResource(new ClassLoaderAsset("log4j.xml", Main.class.getClassLoader()), "classes/log4j.xml");
