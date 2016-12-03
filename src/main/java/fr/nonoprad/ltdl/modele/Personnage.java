@@ -2,6 +2,7 @@ package fr.nonoprad.ltdl.modele;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
+import lombok.experimental.Builder;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -15,6 +16,7 @@ import java.util.List;
 @NamedQueries({
     @NamedQuery(name="Personnage.findAll", query = "SELECT per FROM Personnage per fetch all properties")
 })
+@Builder
 @ToString
 @EqualsAndHashCode
 public class Personnage implements Serializable {
@@ -32,7 +34,7 @@ public class Personnage implements Serializable {
     private Date dateCreate;
 
     @Getter @Setter
-    @ManyToMany(mappedBy = "personnages",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Competence> competences;
 
     @Version

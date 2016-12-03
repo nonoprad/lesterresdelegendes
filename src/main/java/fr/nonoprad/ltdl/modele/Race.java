@@ -1,12 +1,14 @@
 package fr.nonoprad.ltdl.modele;
 
 import lombok.*;
+import lombok.experimental.Builder;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name="RACE")
 @NoArgsConstructor
+@Builder
 @AllArgsConstructor
 @EqualsAndHashCode
 @ToString
@@ -21,5 +23,6 @@ public class Race {
 
     @Getter @Setter
     private String nom;
+
 
 }

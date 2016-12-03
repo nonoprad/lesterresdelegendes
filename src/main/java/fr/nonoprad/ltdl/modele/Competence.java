@@ -2,6 +2,7 @@ package fr.nonoprad.ltdl.modele;
 
 
 import lombok.*;
+import lombok.experimental.Builder;
 
 import javax.persistence.*;
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.List;
 @Table(name="COMPETENCE")
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @EqualsAndHashCode
 @ToString
 @NamedQueries({
@@ -26,9 +28,5 @@ public class Competence {
 
     @Getter @Setter
     private int valeur;
-
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "competences")
-    private List<Personnage> personnages;
 
 }

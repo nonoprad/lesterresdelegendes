@@ -2,29 +2,43 @@ package fr.nonoprad.ltdl.service;
 
 import fr.nonoprad.ltdl.modele.Personnage;
 
-import javax.ejb.Stateful;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceContextType;
 import javax.transaction.Transactional;
 import java.util.List;
 
-@Stateful
-public class PersonnageService {
+@Stateless
+public class PersonnageService extends AbstractServices<Personnage, Long>{
 
-    @PersistenceContext(unitName = "LTDLPU", type = PersistenceContextType.EXTENDED)
-    private EntityManager entityManager;
+
+    public PersonnageService(EntityManager em) {
+        super(em);
+    }
 
     public List<Personnage> findAll(){
         return entityManager.createNamedQuery("Personnage.findAll", Personnage.class).getResultList();
     }
 
-    public Personnage get(Long id){
-        return entityManager.find(Personnage.class, id);
+    @Transactional(Transactional.TxType.REQUIRED)
+    public Personnage save(final Personnage personnage) {
+        Personnage toReturn;
+        if (personnage.getPersonnage_id() != null){
+            entityManager.merge(personnage);
+        }
+        else {
+            entityManager.persist(personnage);
+        }
+        toReturn = new Personnage().builder().personnage_id(personnage.getPersonnage_id())
+                .dateCreate(personnage.getDateCreate())
+                .race(personnage.getRace())
+                .competences(personnage.getCompetences()).build();
+        return toReturn;
+
     }
 
-    @Transactional(Transactional.TxType.REQUIRED)
-    public void creerPersonnage(final Personnage personnage) {
-        entityManager.persist(personnage);
+    @Override
+    public Personnage findById(final Long aLong) {
+        return entityManager.find(Personnage.class, aLong);
     }
+
 }

@@ -1,5 +1,5 @@
 *.iml
 .idea/
-*/target
 **/*.iml
-**/target
+assets/node_modules/
+target/

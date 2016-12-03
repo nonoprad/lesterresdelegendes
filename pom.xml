@@ -69,30 +69,6 @@
             <target>1.8</target>
         </configuration>
     </plugin>
-      <plugin>
-          <groupId>com.github.webdriverextensions</groupId>
-          <artifactId>webdriverextensions-maven-plugin</artifactId>
-          <version>1.0.1</version>
-          <executions>
-              <execution>
-                  <goals>
-                      <goal>install-drivers</goal>
-                  </goals>
-              </execution>
-          </executions>
-          <configuration>
-              <drivers>
-                  <driver>
-                      <name>internetexplorerdriver</name>
-                      <version>2.44</version>
-                  </driver>
-                  <driver>
-                      <name>chromedriver</name>
-                      <version>2.12</version>
-                  </driver>
-              </drivers>
-          </configuration>
-      </plugin>
     </plugins>
   </build>
 
@@ -133,8 +109,6 @@
           <version>${version.h2}</version>
       </dependency>
 
-
-
       <dependency>
           <groupId>org.postgresql</groupId>
           <artifactId>postgresql</artifactId>
@@ -146,35 +120,41 @@
         <artifactId>log4j</artifactId>
         <version>1.2.17</version>
       </dependency>
+
       <dependency>
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
         <version>4.11</version>
       </dependency>
+
       <dependency>
         <groupId>org.projectlombok</groupId>
         <artifactId>lombok</artifactId>
         <version>1.14.8</version>
+        <scope>compile</scope>
       </dependency>
+
       <dependency>
         <groupId>javax</groupId>
         <artifactId>javaee-api</artifactId>
         <version>7.0</version>
         <scope>provided</scope>
       </dependency>
+
       <dependency>
-          <groupId>org.seleniumhq.selenium</groupId>
-          <artifactId>selenium-java</artifactId>
-          <version>3.0.1</version>
+          <groupId>org.hibernate.javax.persistence</groupId>
+          <artifactId>hibernate-jpa-2.0-api</artifactId>
+          <version>LATEST</version>
           <scope>test</scope>
       </dependency>
 
       <dependency>
-          <groupId>com.github.webdriverextensions</groupId>
-          <artifactId>webdriverextensions</artifactId>
-          <version>1.2.1</version>
+          <groupId>org.hibernate</groupId>
+          <artifactId>hibernate-entitymanager</artifactId>
+          <version>LATEST</version>
           <scope>test</scope>
       </dependency>
+
   </dependencies>
 
 </project>
