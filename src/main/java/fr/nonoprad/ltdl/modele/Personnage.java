@@ -34,7 +34,7 @@ public class Personnage implements Serializable {
     private Date dateCreate;
 
     @Getter @Setter
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Competence> competences;
 
     @Version
