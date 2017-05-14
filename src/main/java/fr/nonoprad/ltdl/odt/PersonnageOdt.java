@@ -18,6 +18,7 @@ import java.util.List;
 public class PersonnageOdt implements Serializable{
     private Long personnage_id;
     private RaceOdt race;
+    private String name;
     @JsonFormat(pattern = "dd/MM/yyyy")
     private Date dateCreate;
     private List<CompetenceOdt> competences;

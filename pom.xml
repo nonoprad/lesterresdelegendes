@@ -7,14 +7,15 @@
   <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>ltdl-backend</name>
-
-  <properties>
-      <version.postgresql>9.4.1207</version.postgresql>
-      <version.h2>1.4.187</version.h2>
-      <version.wildfly-swarm>2016.10.0</version.wildfly-swarm>
-      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
+    <name>ltdl-backend</name>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.5.3.RELEASE</version>
+    </parent>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
 
   <build>
   <resources>
@@ -23,138 +24,50 @@
           <filtering>true</filtering>
       </resource>
   </resources>
-  <plugins>
-  <plugin>
-      <!-- http://mydevnotes.nicus.it/2013/03/generate-ddl-with-maven-jpa-hibernate-4.html -->
-      <groupId>de.juplo</groupId>
-      <artifactId>hibernate4-maven-plugin</artifactId>
-      <version>1.1.0</version>
-      <configuration>
-          <hibernateDialect>org.hibernate.dialect.PostgreSQLDialect</hibernateDialect>
-          <delimiter>;</delimiter>
-          <target>SCRIPT</target>
-          <outputFile>${project.build.directory}/schema-hibernate4-maven-plugin.sql</outputFile>
-      </configuration>
-  </plugin>
-    <plugin>
-        <groupId>org.wildfly.swarm</groupId>
-        <artifactId>wildfly-swarm-plugin</artifactId>
-        <version>${version.wildfly-swarm}</version>
+      <plugins>
+          <plugin>
+              <groupId>org.springframework.boot</groupId>
+              <artifactId>spring-boot-maven-plugin</artifactId>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.5.1</version>
             <configuration>
-                <mainClass>fr.nonoprad.ltdl.Main</mainClass>
+                <source>1.8</source>
+                <target>1.8</target>
             </configuration>
-            <executions>
-                <execution>
-                    <goals>
-                        <goal>package</goal>
-                    </goals>
-                </execution>
-                <execution>
-                    <id>package</id>
-                </execution>
-                <execution>
-                    <id>start</id>
-                </execution>
-                <execution>
-                    <id>stop</id>
-                </execution>
-            </executions>
-    </plugin>
-    <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.5.1</version>
-        <configuration>
-            <source>1.8</source>
-            <target>1.8</target>
-        </configuration>
-    </plugin>
+          </plugin>
     </plugins>
   </build>
 
   <dependencies>
-      <dependency>
-          <groupId>org.wildfly.swarm</groupId>
-          <artifactId>jaxrs-cdi</artifactId>
-          <version>${version.wildfly-swarm}</version>
-      </dependency>
-
-      <dependency>
-          <groupId>org.wildfly.swarm</groupId>
-          <artifactId>jpa</artifactId>
-          <version>${version.wildfly-swarm}</version>
-          <exclusions>
-              <exclusion>
-                  <groupId>org.wildfly.swarm</groupId>
-                  <artifactId>h2</artifactId>
-              </exclusion>
-          </exclusions>
-      </dependency>
-
-      <dependency>
-          <groupId>org.wildfly.swarm</groupId>
-          <artifactId>transactions</artifactId>
-          <version>${version.wildfly-swarm}</version>
-      </dependency>
-
-      <dependency>
-          <groupId>org.wildfly.swarm</groupId>
-          <artifactId>ejb</artifactId>
-          <version>${version.wildfly-swarm}</version>
-      </dependency>
-
-      <dependency>
-          <groupId>com.h2database</groupId>
-          <artifactId>h2</artifactId>
-          <version>${version.h2}</version>
-      </dependency>
-
-      <dependency>
-          <groupId>org.postgresql</groupId>
-          <artifactId>postgresql</artifactId>
-          <version>${version.postgresql}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>log4j</groupId>
-        <artifactId>log4j</artifactId>
-        <version>1.2.17</version>
-      </dependency>
-
-      <dependency>
-        <groupId>junit</groupId>
-        <artifactId>junit</artifactId>
-        <version>4.11</version>
-      </dependency>
-
       <dependency>
         <groupId>org.projectlombok</groupId>
         <artifactId>lombok</artifactId>
         <version>1.14.8</version>
         <scope>compile</scope>
       </dependency>
-
+      <!-- Compile -->
       <dependency>
-        <groupId>javax</groupId>
-        <artifactId>javaee-api</artifactId>
-        <version>7.0</version>
-        <scope>provided</scope>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-data-jpa</artifactId>
       </dependency>
-
       <dependency>
-          <groupId>org.hibernate.javax.persistence</groupId>
-          <artifactId>hibernate-jpa-2.0-api</artifactId>
-          <version>LATEST</version>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-web</artifactId>
+      </dependency>
+      <!-- Runtime -->
+      <dependency>
+          <groupId>com.h2database</groupId>
+          <artifactId>h2</artifactId>
+          <scope>runtime</scope>
+      </dependency>
+      <!-- Test -->
+      <dependency>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-test</artifactId>
           <scope>test</scope>
       </dependency>
-
-      <dependency>
-          <groupId>org.hibernate</groupId>
-          <artifactId>hibernate-entitymanager</artifactId>
-          <version>LATEST</version>
-          <scope>test</scope>
-      </dependency>
-
   </dependencies>
-
 </project>

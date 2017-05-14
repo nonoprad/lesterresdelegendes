@@ -1,33 +1,33 @@
 package fr.nonoprad.ltdl.controller;
 
 import fr.nonoprad.ltdl.modele.Race;
+import fr.nonoprad.ltdl.services.RaceService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
-import java.util.List;
+import javax.naming.OperationNotSupportedException;
 
-@Path("races")
+@RestController
+@RequestMapping("races")
 public class RaceController {
 
-    @PersistenceContext
-    private EntityManager entityManager;
+    @Autowired
+    private RaceService raceService;
 
-    @GET
-    @Produces(value = MediaType.APPLICATION_JSON)
-    public List<Race> findall(){
-        return entityManager.createNamedQuery("Race.findAll", Race.class).getResultList();
+    @RequestMapping(method = RequestMethod.GET)
+    public Iterable<Race> findall() throws OperationNotSupportedException {
+        raceService.save(new Race(null,"Wizard"));
+
+
+        return raceService.findAll();
     }
 
-    @GET
-    @Path("{id}")
-    @Produces(value = MediaType.APPLICATION_JSON)
-    public Race get(@PathParam("id") Integer id){
-        return entityManager.find(Race.class, id);
+    @RequestMapping(path = "{id}", method = RequestMethod.GET)
+    public Race get(@PathVariable("id") Integer id){
+        return null;
     }
 
 }
