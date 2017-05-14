@@ -4,10 +4,7 @@ package fr.nonoprad.ltdl.modele;
 import lombok.*;
 import lombok.experimental.Builder;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.util.Set;
 
 @Entity
@@ -19,7 +16,7 @@ import java.util.Set;
 @ToString
 public class Joueur {
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Getter
+    @Id
     private Long idJoueur;
 
     private String login;

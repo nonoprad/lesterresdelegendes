@@ -3,7 +3,6 @@ package fr.nonoprad.ltdl.controller;
 
 
 import fr.nonoprad.ltdl.modele.Personnage;
-import fr.nonoprad.ltdl.odt.PersonnageOdt;
 import fr.nonoprad.ltdl.services.PersonnageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,8 +19,12 @@ public class PersonnageController {
     private PersonnageService personnageService;
 
     @RequestMapping(path = "{id}", method = RequestMethod.GET)
-    public PersonnageOdt get(Long personnage_id){
-        Personnage personnageModele = personnageService.findOne(personnage_id).orElse(Personnage.builder().build());
-        return PersonnageOdt.builder().name(personnageModele.getName()).personnage_id(personnageModele.getPersonnage_id()).build();
+    public Personnage get(Long personnage_id){
+        return personnageService.findOne(personnage_id);
+    }
+
+    @RequestMapping(method = RequestMethod.POST)
+    public void createPersonnage(Personnage personnage){
+        personnageService.save(personnage);
     }
 }

@@ -48,6 +48,11 @@
         <version>1.14.8</version>
         <scope>compile</scope>
       </dependency>
+      <dependency>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-devtools</artifactId>
+          <optional>true</optional>
+      </dependency>
       <!-- Compile -->
       <dependency>
           <groupId>org.springframework.boot</groupId>
